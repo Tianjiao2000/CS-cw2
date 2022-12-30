@@ -1,0 +1,32 @@
+If you have uncovered branches, explain why the branches remain uncovered with your tests and whether it is possible to cover the branches.
+
+Option.java
+Branches in class equals is not covered. My test haven't compared two Options together so remain uncovered. 
+Branches for boolean notEqual could be covered by comparing two options when: 1.one option is null/not null; 2.their types are not equal/equal; 3.name of one option is null and the other is not null; 4.their names are equal/not equal. However there is one brach "getClass() != obj.getClass()" cannot be covered, because the parameter has to be type Option otherwise cannot use this class, there will be ClassCastException happens.
+The value returned by class equals also not been covered. This could be covered by comparing two options, if they are same, they are not the same and if one option is invalid.
+
+OptionMap.java
+Did not consider the situation when option's type is NOTYPE and option is not valid, this branch is covered by using NOTYPE as a type for option.
+Did not consider the situation when option's shortcut is empty, this branch is covered by using empty shortcut for option.
+When try to get option or shortcut from OptionMap, we need to find out whether this option or shortcut is saved in the OptionMap. Brach is not covered because does not consider the situation when option or shortcut is existing or not. These branches covered by give shortcut/option in getOption and getShortcut, also getOptionByNameOrShortcut.
+Return of class optionOrShortcutExists is not covered because it has different cases. Call this class by using shortcut or option as parameter to find out if option or shortcut exist or not in the OptionMap. 
+Part of class setValueWithOptionName and setValueWithOptionShortcut is not covered because the option as parameter could either be null or not null, it is covered by use null and not null as different case when call this class.
+Part of class isOptionValid is not covered because some not valid situation of option and shortcut is not considered. This part could be covered by 1.option name is null/not null; 2.option name is empty/not empty; 3.shortcut is null/not null; 4.shortcut matches/not matches given range.
+
+Parser.java
+Some cases(different option type) in class getInteger is not considered so some branches not been covered. Could be covered by: 1.when option type is integer try to call BigInteger and exception happens; 2.when option type is boolean, result is either 1 or 0; 3.when option type is character, get its ascii value; 4.when there is other cases, result is 0.
+Some cases in class getBoolean is not considered so some branches not covered. Could be covered by: 1.value of this option equals/not equals to false; 2.value of this option equals/not equals to 0.
+
+Some cases in class getCharacter is not considered so some branches not covered. Could be covered by: 1.value of this option is ""; 2.value of this option is the first character in this string.
+
+Some cases in class replace is not considered so some branches not covered. Could be covered by: 1.the parameter is an option name (start with --); 2.the parameter is a shortcut (start with -). When the parameter is a shortcut, shortcut exists in OptionMap or not; when the parameter is not specified, call optionExists and shortcutExist to find out it is an option name or shortcut.
+However, if the case parameter start with -- and -, the optionExist and shortcutExist branches cannot be covered. That's because if the option/shortcut not exist then it cannot be passed into this class, exception already be thrown before.
+
+Some cases in class parser is not considered so some branches not covered. Could be covered by: 1.when option is null; 2.when length of option is 0.
+
+Some branches are missed when using parser sending value for options, split the value first, use different cases of segment of value, is/not blank or length <= 1/length > 1.
+
+Some branches are missed when using parser sending value for options and value should be "". Could be covered by: 1.type of option is boolean; 2.lowercase of value equals to "false"; 3.value equals to "0".
+
+Some branches are missed when using parser sending value for options and value contains quote. Could be covered by use 4 different combination of quote in option value: 1."o"; 2,'o'; 3."o'; 4.'o".
+

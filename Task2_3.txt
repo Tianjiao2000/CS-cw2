@@ -1,0 +1,5 @@
+Minimise your test suite (combining tests from Tasks 1 and 2.2) based on your criteria and justify your choices of criteria and why you think it is effective for use in minimisation.
+
+There are some test suite which does not increase branch coverage(duplicate coverage) or one test suite could cover two branches, so one test suite cover one branch could be removed.
+Sort the test suite to see how many branches it covered, select test suites that cover more than one branches. Once efficient test suites are confirmed, see coverage of remaining test suites, if there are duplicate test suite then remove it.
+The reason I think it is effective is because this method could remove every test suite that duplicate, since the prioritised test suite are saved at first.
